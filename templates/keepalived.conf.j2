@@ -15,7 +15,13 @@ vrrp_instance {{ instance.name }} {
   interface {{ instance.interface }}
 {% if instance.unicast_src_ip is defined %}  unicast_src_ip {{ instance.unicast_src_ip }}
   unicast_peer {
-    {{ instance.secondary_private_ip }}
+  {% if instance.peers is defined %}
+  {% for peer in instance.peers %}
+    {{ peer }}
+  {% endfor %}
+  {% else %}
+  {{ instance.secondary_private_ip }}
+  {% endif %}
   }
 {% endif %}
   virtual_router_id {{ instance.virtual_router_id }}
