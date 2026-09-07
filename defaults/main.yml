@@ -27,6 +27,9 @@
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.
 #     priority: 255
+#   # `nopreempt` keeps a lower-priority master in place when a higher-priority node returns (optional).
+#   # Requires `state: BACKUP` on every node, keepalived ignores it when starting as MASTER. `keepalived_priority` must be below 255.
+#     nopreempt: true
 #   # `check_status_command` will make +3 to priority if command return is 0 (optional). example:
 #     check_status_command: /sbin/postfix status
 #   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
