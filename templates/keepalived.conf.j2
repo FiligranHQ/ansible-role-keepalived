@@ -26,6 +26,9 @@ vrrp_instance {{ instance.name }} {
 {% endif %}
   virtual_router_id {{ instance.virtual_router_id }}
   priority {{ instance.priority }}
+{% if instance.nopreempt | default(false) %}
+  nopreempt
+{% endif %}
   authentication {
     auth_type {{ instance.authentication.auth_type }}
     auth_pass {{ instance.authentication.auth_pass }}
